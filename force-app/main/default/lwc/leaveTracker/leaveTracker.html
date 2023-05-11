@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Leave Management">
+        <lightning-tabset>
+            <lightning-tab label="My Leaves">
+                <c-my-leaves onrefreshleaverequests={refreshLeaveReqeuestHandler} ></c-my-leaves>
+            </lightning-tab>
+            <lightning-tab label="Leave Request">
+                <c-leave-request lwc:ref="leaveRequstComp" onactive={handleActive}></c-leave-request>
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+</template>

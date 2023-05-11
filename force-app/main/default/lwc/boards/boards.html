@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="Boards">
+        <lightning-button-icon icon-name="utility:add" variant="border-filled" alternative-text="Add Board"
+            title="Add Board" slot="actions" onclick={addBoard}></lightning-button-icon>
+            <lightning-datatable
+                key-field="id"
+                data={boardData}
+                columns={columns}
+                hide-checkbox-column
+                onrowaction={rowActionHandler}>
+        </lightning-datatable>
+
+        <div class="slds-p-horizontal_small">
+            <template lwc:if={showModal}>
+                <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+                    class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <div class="slds-modal__header">
+                            <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">Add New
+                                Board</h1>
+                        </div>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <lightning-record-edit-form record-id={recordId} object-api-name={objectApiName} onsubmit={handleSubmit}>
+                                <lightning-input-field field-name={boardFileds.name}> </lightning-input-field>
+                                <lightning-input-field field-name={boardFileds.description}> </lightning-input-field>    
+                                <lightning-input-field field-name={boardFileds.noOfSections} onchange={noOfSectionChangeHandler}> </lightning-input-field>
+                                <template for:each={sections} for:item="section">
+                                    <lightning-input key={section.id} label={section.label} data-section-control="true"></lightning-input>
+                                </template>
+                                <div class="slds-m-top_small">
+                                    <lightning-button variant="brand" type="submit" name="Save"
+                                        label="Save"></lightning-button>
+                                    <lightning-button class="slds-m-left_small" variant="brand" type="submit"
+                                        name="Cancel" label="Cancel" onclick={closeModal}></lightning-button>
+                                </div>
+                            </lightning-record-edit-form>
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,9 @@
+<template>
+    <lightning-card title="LWC Communication">
+        <lightning-button variant="brand" onclick={showChild}></lightning-button>
+        <div class="slds-p-horizontal_small">
+            <p>Count: {count}</p>
+            <c-basic-child-comp onchangecount={handleChange}></c-basic-child-comp>
+        </div>
+    </lightning-card>
+</template>
